@@ -6,7 +6,7 @@ const cart = [
 
 function calculateTotal(cartItems) {
   let total = 0;
-  for (let i = 0; i <= cartItems.length; i++) { // Bug: <= should be <
+  for (let i = 0; i < cartItems.length; i++) { // Bug: <= should be <
       total += cartItems[i].price; // Bug: cartItems[i] is undefined on the last iteration
   }
   return total;
@@ -18,6 +18,9 @@ function applyDiscount(total, discountRate) {
 
 function generateReceipt(cartItems, total) {
   let receipt = "Items:\n";
+  if (total === isNaN) {
+    return "This is not a number, try again"
+  }
   cartItems.forEach(item => {
       receipt += `${item.name}: $${item.price}\n`;
   });
